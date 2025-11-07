@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Contacto</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    .contact-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: center;
+      background: var(--card);
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(2,6,23,0.3);
+      overflow: hidden;
+      margin-top: 2rem;
+    }
+
+    .contact-info {
+      padding: 2rem;
+    }
+
+    .contact-info h3 {
+      color: var(--turquoise);
+      margin-bottom: 1rem;
+    }
+
+    .contact-info p {
+      margin: 0.4rem 0;
+    }
+
+    .social-links {
+      margin-top: 1.2rem;
+    }
+
+    .social-links a {
+      display: inline-block;
+      margin-right: 12px;
+      font-size: 1.4rem;
+      color: var(--turquoise);
+      text-decoration: none;
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    .social-links a:hover {
+      transform: scale(1.2);
+      color: var(--orange);
+    }
+
+    .contact-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    @media (max-width: 700px) {
+      .contact-wrapper {
+        grid-template-columns: 1fr;
+      }
+      .contact-image {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">Calidad de Software</a>
+      <button id="btn-menu" class="hamburger" aria-label="Abrir menú">☰</button>
+      <nav id="main-nav" class="nav">
+        <ul>
+         <li><a href="index.html">Inicio</a></li>
+          <li><a href="calidad.html">¿Qué es?</a></li>
+          <li><a href="principios.html">Principios</a></li>
+          <li><a href="estandares.html">Estándares</a></li>
+          <li><a href="modelos.html">Modelos</a></li>
+          <li><a href="evaluacion.html">Evaluación</a></li>
+          <li><a href="conclusiones.html">Conclusiones</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container content">
+    <article class="page">
+      <h2>Contacto</h2>
+      <p class="muted">Escríbeme si tienes dudas, sugerencias o quieres colaborar.</p>
+
+      <div class="contact-wrapper">
+        <div class="contact-info">
+          <h3>Información de contacto</h3>
+          <p><strong>Email:</strong> jairo.vertel@cun.edu.co</p>
+          <p><strong>Proyecto:</strong> Sitio educativo sobre calidad de software</p>
+
+          <div class="social-links">
+            <h4>Sígueme en redes:</h4>
+            <a href="https://www.instagram.com/jairo__vertel?igsh=cTFzeDRjMnVlY3Q=" target="_blank" title="Instagram">📸</a>
+            <a href="https://www.linkedin.com/in/jairo-vertel-7350a1243" target="_blank" title="LinkedIn">💼</a>
+            <a href="https://github.com/" target="_blank" title="GitHub">💻</a>
+          </div>
+        </div>
+
+        <div class="contact-image">
+          <img src="C:\Users\USUARIO\Desktop\pagina\PAGINA FINAL\Imagenes\Contacto.png" alt="Imagen de contacto">
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2025 - Calidad de Software | CUN</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

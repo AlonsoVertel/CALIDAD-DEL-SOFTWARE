@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Evaluación de Conocimientos</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    /* === ESTILOS GENERALES === */
+    .intro-box {
+      background: var(--card);
+      padding: 2rem 2rem 1.5rem 2rem;
+      border-radius: 15px;
+      box-shadow: 0 6px 18px rgba(2,6,23,0.2);
+      text-align: center;
+      margin-top: 2rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .intro-box h3 {
+      margin-bottom: 0.5rem;
+    }
+
+    .intro-box p {
+      margin-bottom: 0.8rem;
+    }
+
+    .btn-start {
+      background: var(--turquoise);
+      border: none;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      font-size: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    .btn-start:hover {
+      background: #21867a;
+    }
+
+    /* === CUESTIONARIO === */
+    .quiz-container {
+      display: none;
+      background: var(--card);
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 6px 18px rgba(2,6,23,0.2);
+      text-align: center;
+      margin-top: 2rem;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .quiz-question {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .quiz-options {
+      list-style: none;
+      padding: 0;
+      margin: 0 auto 1rem auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+    }
+
+    .quiz-options li {
+      width: 100%;
+      max-width: 750px;
+      background: #1e2a3b;
+      color: white;
+      padding: 12px 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: left;
+      border: 2px solid transparent;
+      font-size: 1.05rem;
+      line-height: 1.4;
+    }
+
+    .quiz-options li:hover {
+      background: rgba(42,157,143,0.25);
+      transform: scale(1.02);
+    }
+
+    .quiz-options li.correct {
+      background: #2a9d8f;
+      border-color: #2a9d8f;
+      color: #fff;
+    }
+
+    .quiz-options li.incorrect {
+      background: #e76f51;
+      border-color: #e76f51;
+      color: #fff;
+    }
+
+    .btn-next, .btn-restart, .btn-volver {
+      background: var(--turquoise);
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      margin: 1rem 0.5rem 0 0.5rem;
+      transition: background 0.3s ease;
+    }
+
+    .btn-next:hover, .btn-restart:hover, .btn-volver:hover {
+      background: #21867a;
+    }
+
+    .quiz-result {
+      display: none;
+      margin-top: 1.5rem;
+      font-size: 1.1rem;
+      background: var(--card);
+      border-radius: 10px;
+      padding: 1.2rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .recomendacion {
+      margin-top: 1rem;
+      background: rgba(255,255,255,0.05);
+      padding: 1rem;
+      border-radius: 10px;
+      font-size: 1rem;
+      color: var(--text);
+      text-align: left;
+    }
+
+    .recomendacion a {
+      color: var(--turquoise);
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .recomendacion a:hover {
+      text-decoration: underline;
+    }
+
+    /* === OPTIMIZACIÓN VISUAL === */
+    .page-hero div {
+      padding: 5rem 1rem;
+    }
+
+    .container.content {
+      padding-bottom: 5rem;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">Calidad de Software</a>
+      <button id="btn-menu" class="hamburger" aria-label="Abrir menú">☰</button>
+      <nav id="main-nav" class="nav">
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="calidad.html">¿Qué es?</a></li>
+          <li><a href="principios.html">Principios</a></li>
+          <li><a href="estandares.html">Estándares</a></li>
+          <li><a href="modelos.html">Modelos</a></li>
+          <li><a href="evaluacion.html">Evaluación</a></li>
+          <li><a href="conclusiones.html">Conclusiones</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero con imagen -->
+  <section class="page-hero" id="hero" style="background-image: url('Imagenes/Evaluacion.png');">
+    <div>
+      <h1>Evaluación de Conocimientos</h1>
+      <p>Demuestra cuánto sabes sobre calidad de software</p>
+    </div>
+  </section>
+
+  <main class="container content">
+    <article class="page">
+      <div class="intro-box" id="intro-box">
+        <h3>Evalúa tus conocimientos</h3>
+        <p>Haz clic en el botón para iniciar el cuestionario.</p>
+        <button class="btn-start" id="start-btn">Iniciar Evaluación</button>
+      </div>
+
+      <div class="quiz-container" id="quiz">
+        <p class="quiz-question" id="question"></p>
+        <ul class="quiz-options" id="options"></ul>
+        <button id="next-btn" class="btn-next">Siguiente</button>
+        <div id="result" class="quiz-result"></div>
+        <div id="recomendacion" class="recomendacion" style="display:none;"></div>
+        <div id="final-buttons" style="display:none;">
+          <button id="restart-btn" class="btn-restart">Volver a intentar</button>
+          <button id="volver-btn" class="btn-volver">Volver al inicio de la evaluación</button>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer" id="footer">
+    <div class="container">
+      <p>© 2025 - Calidad de Software | CUN</p>
+    </div>
+  </footer>
+
+  <script>
+    const hero = document.getElementById("hero");
+    const introBox = document.getElementById("intro-box");
+    const quiz = document.getElementById("quiz");
+    const footer = document.getElementById("footer");
+    const startBtn = document.getElementById("start-btn");
+    const questionEl = document.getElementById("question");
+    const optionsEl = document.getElementById("options");
+    const nextBtn = document.getElementById("next-btn");
+    const resultEl = document.getElementById("result");
+    const recEl = document.getElementById("recomendacion");
+    const restartBtn = document.getElementById("restart-btn");
+    const volverBtn = document.getElementById("volver-btn");
+    const finalBtns = document.getElementById("final-buttons");
+
+    const preguntas = [
+      { q: "¿Qué es la calidad de software?",
+        options: [
+          "A) Un método para eliminar todo el código duplicado",
+          "B) El grado en que un sistema cumple con los requisitos y satisface al usuario",
+          "C) Una técnica de diseño gráfico",
+          "D) Un programa de edición de código"
+        ], correct: 1 },
+      { q: "¿Qué norma define el modelo de calidad del producto software?",
+        options: ["A) ISO/IEC 25010", "B) CMMI", "C) IEEE 829", "D) ISO 9001"],
+        correct: 0 },
+      { q: "¿Qué principio busca mejorar continuamente los procesos de desarrollo?",
+        options: ["A) Prevención antes que corrección", "B) Mejora continua", "C) Documentación clara", "D) Eficiencia operativa"],
+        correct: 1 },
+      { q: "¿Qué característica evalúa la facilidad de uso de un software?",
+        options: ["A) Portabilidad", "B) Usabilidad", "C) Seguridad", "D) Compatibilidad"],
+        correct: 1 },
+      { q: "¿Qué estándar establece los procesos del ciclo de vida del software?",
+        options: ["A) ISO/IEC 12207", "B) ISO/IEC 25010", "C) IEEE 829", "D) CMMI"],
+        correct: 0 }
+    ];
+
+    let index = 0;
+    let score = 0;
+
+    startBtn.addEventListener("click", () => {
+      hero.style.display = "none";
+      footer.style.display = "none";
+      introBox.style.display = "none";
+      quiz.style.display = "block";
+      mostrarPregunta();
+      window.scrollTo(0, 0);
+    });
+
+    function mostrarPregunta() {
+      const p = preguntas[index];
+      questionEl.textContent = p.q;
+      optionsEl.innerHTML = "";
+      p.options.forEach((opt, i) => {
+        const li = document.createElement("li");
+        li.textContent = opt;
+        li.addEventListener("click", () => seleccionarRespuesta(li, i));
+        optionsEl.appendChild(li);
+      });
+      nextBtn.style.display = "none";
+      resultEl.style.display = "none";
+      recEl.style.display = "none";
+      finalBtns.style.display = "none";
+    }
+
+    function seleccionarRespuesta(element, seleccion) {
+      const correcta = preguntas[index].correct;
+      const opciones = optionsEl.querySelectorAll("li");
+      opciones.forEach(li => li.style.pointerEvents = "none");
+
+      if (seleccion === correcta) {
+        element.classList.add("correct");
+        score++;
+      } else {
+        element.classList.add("incorrect");
+        opciones[correcta].classList.add("correct");
+      }
+      nextBtn.style.display = "inline-block";
+    }
+
+    nextBtn.addEventListener("click", () => {
+      index++;
+      if (index < preguntas.length) {
+        mostrarPregunta();
+      } else {
+        mostrarResultado();
+      }
+    });
+
+    function mostrarResultado() {
+      questionEl.style.display = "none";
+      optionsEl.style.display = "none";
+      nextBtn.style.display = "none";
+      resultEl.style.display = "block";
+      recEl.style.display = "block";
+      finalBtns.style.display = "block";
+
+      resultEl.innerHTML = `<strong>Tu puntaje: ${score}/${preguntas.length}</strong><br>`;
+      let mensaje = "";
+      if (score === preguntas.length) mensaje = "🌟 ¡Excelente! Tienes dominio total del tema.";
+      else if (score >= 3) mensaje = "💡 Buen trabajo, puedes reforzar algunos conceptos.";
+      else mensaje = "🧠 No te preocupes, sigue practicando para mejorar.";
+      resultEl.innerHTML += mensaje;
+
+      if (score < 3) {
+        recEl.innerHTML = `📚 Te recomendamos repasar los temas de 
+          <a href="principios.html">Principios</a> y 
+          <a href="estandares.html">Estándares</a>.`;
+      } else if (score < preguntas.length) {
+        recEl.innerHTML = `🔍 Puedes consultar nuevamente 
+          <a href="calidad.html">¿Qué es la calidad?</a>.`;
+      } else {
+        recEl.innerHTML = `🏆 ¡Excelente desempeño! Puedes continuar explorando más sobre 
+          <a href="evaluacion.html">Evaluaciones adicionales</a> 
+          o <a href="contacto.html">compartir tus resultados</a>.`;
+      }
+    }
+
+    restartBtn.addEventListener("click", () => {
+      index = 0;
+      score = 0;
+      questionEl.style.display = "block";
+      optionsEl.style.display = "block";
+      mostrarPregunta();
+    });
+
+    volverBtn.addEventListener("click", () => {
+      hero.style.display = "block";
+      footer.style.display = "block";
+      introBox.style.display = "block";
+      quiz.style.display = "none";
+      index = 0;
+      score = 0;
+      window.scrollTo(0, 0);
+    });
+  </script>
+</body>
+</html>
